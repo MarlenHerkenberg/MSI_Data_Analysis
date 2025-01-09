@@ -1,0 +1,174 @@
+---
+title: "Goldsmith MSI"
+author: "Marlen Herkenberg"
+date: "8 1 2025"
+output: html_document
+---
+
+```{r setup and packages, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+#packages:
+
+library(ggplot2)
+library(dplyr)
+library(EnvStats)
+library(ggthemes)
+library(lmtest)
+library(plyr)
+library(rethinking)
+library(tidyverse)
+library(viridisLite)
+library(viridis)
+
+```
+
+
+##Working with Gold-MSI:
+
+#What does each parameter mean?
+AE -> Active Engagement
+PA -> Perceptual Abilities
+EM -> Emotion
+SA -> Singing Abilities
+MT -> Musical Training
+GM -> General Musical Sophistication
+
+
+```{r Loading Table with Data}
+
+MSI_data <- readxl::read_xlsx("C:/Users/Marle/Documents/Studium/Biologie Master/Masterarbeit/Data/Masterarbeit_Data/Gold-MSI-Data.xlsx") 
+
+#to be able to only work with the so far collected data and exclude NA's:
+MSI_data_currently <- na.omit(MSI_data)
+
+```
+
+
+##Plotting the so far collected data
+
+```{r Plots: Active Engagement, echo=FALSE}
+
+#Summed Score of Parameter AE:
+MSI_AE_plot <- 
+  ggplot(MSI_data_currently)+
+  geom_col(mapping = aes(x = as.factor(Subject), y = AE_sum, fill = as.factor(Subject)), width = 0.6)+
+  theme_bw()+
+  scale_fill_manual(values = c("olivedrab1", "olivedrab2", "olivedrab3", "olivedrab4"))+
+  theme(legend.position = "none")+
+  xlab(label = "Subject")+
+  ylab(label = "Active Engagement (Summed Score)")+
+  ggtitle(label = "Gold-MSI", subtitle = "Active Engagement of subjects")
+  
+
+print(MSI_AE_plot)
+
+#Mean of Parameter AE:
+MSI_AEmean_plot <- 
+  ggplot(MSI_data_currently)+
+  geom_col(mapping = aes(x = as.factor(Subject), y = AE_mean, fill = as.factor(Subject)), width = 0.6)+
+  theme_bw()+
+  scale_fill_manual(values = c("olivedrab1", "olivedrab2", "olivedrab3", "olivedrab4"))+
+  theme(legend.position = "none")+
+  xlab(label = "Subject")+
+  ylab(label = "Active Engagement (mean)")+
+  ggtitle(label = "Gold-MSI", subtitle = "Mean Active Engagement of subjects")
+  
+
+print(MSI_AEmean_plot)
+
+```
+
+
+```{r Plots: Perceptual Abilities, echo=FALSE}
+
+MSI_PA_plot <- 
+  ggplot(MSI_data_currently)+
+  geom_col(mapping = aes(x = as.factor(Subject), y = PA_sum, fill = as.factor(Subject)), width = 0.6)+
+  theme_bw()+
+  scale_fill_manual(values = c("lightskyblue1", "lightskyblue2", "lightskyblue3", "lightskyblue4"))+
+  theme(legend.position = "none")+
+  xlab(label = "Subject")+
+  ylab(label = "Perceptual Abilities (Summed Score)")+
+  ggtitle(label = "Gold-MSI", subtitle = "Perceptual Abilities of subjects")
+  
+
+print(MSI_PA_plot)
+
+```
+
+
+```{r Plots: Musical Training, echo=FALSE}
+
+MSI_MT_plot <- 
+  ggplot(MSI_data_currently)+
+  geom_col(mapping = aes(x = as.factor(Subject), y = MT_sum, fill = as.factor(Subject)), width = 0.6)+
+  theme_bw()+
+  scale_fill_manual(values = c("palevioletred1", "palevioletred2", "palevioletred3", "palevioletred4"))+
+  theme(legend.position = "none")+
+  xlab(label = "Subject")+
+  ylab(label = "Musical Training (Summed Score)")+
+  ggtitle(label = "Gold-MSI", subtitle = "Musical Training of subjects")
+  
+
+print(MSI_MT_plot)
+
+```
+
+
+
+```{r Plots: Singing Abilities, echo=FALSE}
+
+MSI_SA_plot <- 
+  ggplot(MSI_data_currently)+
+  geom_col(mapping = aes(x = as.factor(Subject), y = SA_sum, fill = as.factor(Subject)), width = 0.6)+
+  theme_bw()+
+  scale_fill_manual(values = c("plum1", "plum2", "plum3", "plum4"))+
+  theme(legend.position = "none")+
+  xlab(label = "Subject")+
+  ylab(label = "Singing Abilities (Summed Score)")+
+  ggtitle(label = "Gold-MSI", subtitle = "Singing Abilities of subjects")
+  
+
+print(MSI_SA_plot)
+
+```
+
+
+
+```{r Plots: Emotion, echo=FALSE}
+
+MSI_EM_plot <- 
+  ggplot(MSI_data_currently)+
+  geom_col(mapping = aes(x = as.factor(Subject), y = EM_sum, fill = as.factor(Subject)), width = 0.6)+
+  theme_bw()+
+  scale_fill_manual(values = c("royalblue1", "royalblue2", "royalblue3", "royalblue4"))+
+  theme(legend.position = "none")+
+  xlab(label = "Subject")+
+  ylab(label = "Emotion (Summed Score)")+
+  ggtitle(label = "Gold-MSI", subtitle = "Emotion of subjects")
+  
+
+print(MSI_EM_plot)
+
+```
+
+
+```{r Plots: General Musical Sophistication, echo=FALSE}
+
+MSI_GM_plot <- 
+  ggplot(MSI_data_currently)+
+  geom_col(mapping = aes(x = as.factor(Subject), y = GM_sum, fill = as.factor(Subject)), width = 0.6)+
+  theme_bw()+
+  scale_fill_manual(values = c("gold1", "gold2", "gold3", "gold4"))+
+  theme(legend.position = "none")+
+  xlab(label = "Subject")+
+  ylab(label = "General MS (Summed Score)")+
+  ggtitle(label = "Gold-MSI", subtitle = "General Musical Sophistication of subjects")
+  
+
+print(MSI_GM_plot)
+
+```
+
