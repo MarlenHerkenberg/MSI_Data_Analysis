@@ -38,7 +38,7 @@ GM -> General Musical Sophistication
 
 ```{r Loading Table with Data}
 
-MSI_data <- readxl::read_xlsx("C:/Users/Marle/Documents/Studium/Biologie Master/Masterarbeit/Data/Masterarbeit_Data/Gold-MSI-Data.xlsx") 
+MSI_data <- readxl::read_xlsx("C:/Users/Marle/Documents/Studium/Biologie Master/Masterarbeit/Data/Gold-MSI/Gold-MSI-Data.xlsx") 
 
 #to be able to only work with the so far collected data and exclude NA's:
 MSI_data_currently <- na.omit(MSI_data)
@@ -53,9 +53,8 @@ MSI_data_currently <- na.omit(MSI_data)
 #Summed Score of Parameter AE:
 MSI_AE_plot <- 
   ggplot(MSI_data_currently)+
-  geom_col(mapping = aes(x = as.factor(Subject), y = AE_sum, fill = as.factor(Subject)), width = 0.6)+
+  geom_col(mapping = aes(x = Subject, y = AE_sum), fill = "olivedrab4", width = 0.6)+
   theme_bw()+
-  scale_fill_manual(values = c("olivedrab1", "olivedrab2", "olivedrab3", "olivedrab4"))+
   theme(legend.position = "none")+
   xlab(label = "Subject")+
   ylab(label = "Active Engagement (Summed Score)")+
@@ -67,7 +66,7 @@ print(MSI_AE_plot)
 #Mean of Parameter AE:
 MSI_AEmean_plot <- 
   ggplot(MSI_data_currently)+
-  geom_col(mapping = aes(x = as.factor(Subject), y = AE_mean, fill = as.factor(Subject)), width = 0.6)+
+  geom_col(mapping = aes(x = Subject, y = AE_sum), fill = "olivedrab4", width = 0.6)+
   theme_bw()+
   scale_fill_manual(values = c("olivedrab1", "olivedrab2", "olivedrab3", "olivedrab4"))+
   theme(legend.position = "none")+
@@ -85,9 +84,7 @@ print(MSI_AEmean_plot)
 
 MSI_PA_plot <- 
   ggplot(MSI_data_currently)+
-  geom_col(mapping = aes(x = as.factor(Subject), y = PA_sum, fill = as.factor(Subject)), width = 0.6)+
-  theme_bw()+
-  scale_fill_manual(values = c("lightskyblue1", "lightskyblue2", "lightskyblue3", "lightskyblue4"))+
+  geom_col(mapping = aes(x = Subject, y = PA_sum), fill = "lightskyblue3", width = 0.6)+  theme_bw()+
   theme(legend.position = "none")+
   xlab(label = "Subject")+
   ylab(label = "Perceptual Abilities (Summed Score)")+
@@ -103,9 +100,7 @@ print(MSI_PA_plot)
 
 MSI_MT_plot <- 
   ggplot(MSI_data_currently)+
-  geom_col(mapping = aes(x = as.factor(Subject), y = MT_sum, fill = as.factor(Subject)), width = 0.6)+
-  theme_bw()+
-  scale_fill_manual(values = c("palevioletred1", "palevioletred2", "palevioletred3", "palevioletred4"))+
+  geom_col(mapping = aes(x = Subject, y = MT_sum), fill = "palevioletred3", width = 0.6)+  theme_bw()+
   theme(legend.position = "none")+
   xlab(label = "Subject")+
   ylab(label = "Musical Training (Summed Score)")+
@@ -122,9 +117,7 @@ print(MSI_MT_plot)
 
 MSI_SA_plot <- 
   ggplot(MSI_data_currently)+
-  geom_col(mapping = aes(x = as.factor(Subject), y = SA_sum, fill = as.factor(Subject)), width = 0.6)+
-  theme_bw()+
-  scale_fill_manual(values = c("plum1", "plum2", "plum3", "plum4"))+
+  geom_col(mapping = aes(x = Subject, y = SA_sum), fill = "plum4", width = 0.6)+  theme_bw()+
   theme(legend.position = "none")+
   xlab(label = "Subject")+
   ylab(label = "Singing Abilities (Summed Score)")+
@@ -141,9 +134,7 @@ print(MSI_SA_plot)
 
 MSI_EM_plot <- 
   ggplot(MSI_data_currently)+
-  geom_col(mapping = aes(x = as.factor(Subject), y = EM_sum, fill = as.factor(Subject)), width = 0.6)+
-  theme_bw()+
-  scale_fill_manual(values = c("royalblue1", "royalblue2", "royalblue3", "royalblue4"))+
+  geom_col(mapping = aes(x = Subject, y = EM_sum), fill = "royalblue3", width = 0.6)+  theme_bw()+
   theme(legend.position = "none")+
   xlab(label = "Subject")+
   ylab(label = "Emotion (Summed Score)")+
@@ -159,9 +150,7 @@ print(MSI_EM_plot)
 
 MSI_GM_plot <- 
   ggplot(MSI_data_currently)+
-  geom_col(mapping = aes(x = as.factor(Subject), y = GM_sum, fill = as.factor(Subject)), width = 0.6)+
-  theme_bw()+
-  scale_fill_manual(values = c("gold1", "gold2", "gold3", "gold4"))+
+  geom_col(mapping = aes(x = Subject, y = GM_sum), fill = "gold2", width = 0.6)+  theme_bw()+
   theme(legend.position = "none")+
   xlab(label = "Subject")+
   ylab(label = "General MS (Summed Score)")+
@@ -171,4 +160,3 @@ MSI_GM_plot <-
 print(MSI_GM_plot)
 
 ```
-
